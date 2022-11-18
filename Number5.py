@@ -20,7 +20,7 @@ X.head()
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=1)
 
 # Define a random forest model
-rf_model = RandomForestRegressor(random_state=1)
+rf_model = RandomForestRegressor(random_state=1, n_estimators = 100, max_depth = 100, random_state=18, min_samples_split = 3, min_samples_leaf = 1, max_features = 10, max_leaf_nodes = 1000)
 rf_model.fit(train_X, train_y)
 rf_val_predictions = rf_model.predict(val_X)
 rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
@@ -28,7 +28,7 @@ rf_val_mae = mean_absolute_error(rf_val_predictions, val_y)
 np.shape(rf_val_predictions)
 
 # To improve accuracy, create a new Random Forest model which you will train on all training data
-rf_model_on_full_data = RandomForestRegressor()
+rf_model_on_full_data = RandomForestRegressor(n_estimators = 100, max_depth = 100, random_state=18, min_samples_split = 3, min_samples_leaf = 1, max_features = 10, max_leaf_nodes = 1000)
 
 # fit rf_model_on_full_data on all data from the training data
 rf_model_on_full_data.fit(X, y)
